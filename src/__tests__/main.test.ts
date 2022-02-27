@@ -39,7 +39,7 @@ describe("main", () => {
     expect(blockchain.getBalance(3)).toEqual(90);
   });
 
-  it("should get block balance", () => {
+  it("should get block balance after block is created", () => {
     const validBlock: TransactionType[] = [
       [0, 2, 100],
       [2, 3, 80],
@@ -51,4 +51,14 @@ describe("main", () => {
     expect(block.getAccountBalance(2, initialBalances[2])).toEqual(20);
     expect(block.getAccountBalance(3, initialBalances[3])).toEqual(90);
   });
+
+  it("should check if a block hash starts with 1234", () => {
+    const validBlock: TransactionType[] = [
+      [0, 2, 100],
+      [2, 3, 80],
+      [3, 1, 10],
+    ];
+    const block = new Block(validBlock, "0");
+    expect(block.hash.substring(0, 4)).toEqual("1234");
+  })
 });
