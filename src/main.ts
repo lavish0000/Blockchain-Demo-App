@@ -35,14 +35,14 @@ export default class Blockchain {
   private createBlock(currentBalance: number[], transactions: TransactionType[]) {
     const block: TransactionType[] = [];
 
-    while (block.length < this.blockSize) {
+    while (block.length < this.blockSize) { // until block is full
       const transaction = transactions.shift();
 
       if (!transaction) break;
       const [from, to, amount] = transaction;
       const newBalance = (currentBalance[from] || 0) - amount;
 
-      if (newBalance >= 0) {
+      if (newBalance >= 0 && currentBalance[from] !== undefined && currentBalance[to] !== undefined) {
         currentBalance[from] = newBalance;
         currentBalance[to] += amount;
         block.push(transaction);
@@ -113,9 +113,9 @@ export class Block {
 
   getAccountBalance(account: number, balance: number) {
     const accountBalance = this.transactions.reduce(
-      (acc, [fromBalance, toBalance, value]) => {
-        if (fromBalance === account) return acc - value;
-        else if (toBalance === account) return acc + value;
+      (acc, [from, to, value]) => {
+        if (from === account) return acc - value;
+        else if (to === account) return acc + value;
         else return acc;
       },
       balance
