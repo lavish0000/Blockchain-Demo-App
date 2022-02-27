@@ -1,6 +1,6 @@
 ### Setup
 
-npm install
+`npm i`
 
 ## Available Scripts
 
