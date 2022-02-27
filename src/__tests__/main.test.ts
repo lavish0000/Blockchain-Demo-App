@@ -33,10 +33,10 @@ describe("main", () => {
   it("should get the balance of an account", () => {
     const blockchain = new Blockchain(initialBalances, transactions, blockSize);
     blockchain.initialize();
-    expect(blockchain.getBalance(0)).toEqual(100);
-    expect(blockchain.getBalance(1)).toEqual(10);
-    expect(blockchain.getBalance(2)).toEqual(20);
-    expect(blockchain.getBalance(3)).toEqual(90);
+    expect(blockchain.getAccountBalance(0)).toEqual(100);
+    expect(blockchain.getAccountBalance(1)).toEqual(10);
+    expect(blockchain.getAccountBalance(2)).toEqual(20);
+    expect(blockchain.getAccountBalance(3)).toEqual(90);
   });
 
   it("should get block balance after block is created", () => {

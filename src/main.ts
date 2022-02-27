@@ -66,7 +66,7 @@ export default class Blockchain {
     }
   }
 
-  getBalance(account: number) {
+  getAccountBalance(account: number) {
     let initialBalance = this.initialBalances[account];
 
     this.blocks.map(
@@ -136,7 +136,7 @@ const transactions: TransactionType[] = [
 const blockChain = new Blockchain(initialBalances, transactions, blockSize);
 blockChain.initialize();
 
-console.log(blockChain.getBalance(0)); // => 100
-console.log(blockChain.getBalance(1)); // => 10
-console.log(blockChain.getBalance(2)); // => 20
-console.log(blockChain.getBalance(3)); // => 90
+console.log(blockChain.getAccountBalance(0)); // => 100
+console.log(blockChain.getAccountBalance(1)); // => 10
+console.log(blockChain.getAccountBalance(2)); // => 20
+console.log(blockChain.getAccountBalance(3)); // => 90
